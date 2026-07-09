@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}AI Smart Allocation Engine{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="app-shell">
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('home') }}">
+      <span class="brand-mark">AI</span>
+      <span class="brand-text">Smart Allocation</span>
+    </a>
+
+    <nav class="topnav">
+      {% if session.get('student_id') %}
+        <a href="{{ url_for('student_dashboard') }}" class="topnav-link">Dashboard</a>
+        <a href="{{ url_for('student_matches') }}" class="topnav-link">My matches</a>
+        <a href="{{ url_for('internships') }}" class="topnav-link">Browse internships</a>
+        <span class="topnav-user">{{ session.get('student_name') }}</span>
+        <a href="{{ url_for('logout') }}" class="btn btn-ghost btn-sm">Log out</a>
+      {% elif session.get('company_id') %}
+        <a href="{{ url_for('company_dashboard') }}" class="topnav-link">Dashboard</a>
+        <a href="{{ url_for('post_internship') }}" class="topnav-link">Post internship</a>
+        <a href="{{ url_for('internships') }}" class="topnav-link">All internships</a>
+        <span class="topnav-user">{{ session.get('company_name') }}</span>
+        <a href="{{ url_for('logout') }}" class="btn btn-ghost btn-sm">Log out</a>
+      {% elif session.get('is_admin') %}
+        <a href="{{ url_for('admin_dashboard') }}" class="topnav-link">Overview</a>
+        <a href="{{ url_for('students') }}" class="topnav-link">Students</a>
+        <a href="{{ url_for('companies') }}" class="topnav-link">Companies</a>
+        <a href="{{ url_for('allocation_report') }}" class="topnav-link">Allocation report</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-ghost btn-sm">Log out</a>
+      {% else %}
+        <a href="{{ url_for('internships') }}" class="topnav-link">Browse internships</a>
+        <a href="{{ url_for('student_login') }}" class="btn btn-ghost btn-sm">Student</a>
+        <a href="{{ url_for('company_login') }}" class="btn btn-ghost btn-sm">Company</a>
+        <a href="{{ url_for('admin_login') }}" class="btn btn-ghost btn-sm">Admin</a>
+      {% endif %}
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-stack">
+        {% for category, message in messages %}
+          <div class="flash flash-{{ 'error' if category == 'error' else 'success' }}" role="status">
+            {{ message }}
+            <button class="flash-dismiss" aria-label="Dismiss" onclick="this.parentElement.remove()">&times;</button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <span>AI Smart Allocation Engine</span>
+    <span class="footer-dot">&middot;</span>
+    <span>Matching students to internships that fit</span>
+  </footer>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

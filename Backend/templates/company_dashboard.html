@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Company dashboard · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="dash-header">
+  <p class="eyebrow">// company dashboard</p>
+  <h1 class="dash-title">Welcome back, {{ company_name }}</h1>
+</section>
+
+<section class="dash-grid">
+  <a href="{{ url_for('post_internship') }}" class="dash-card">
+    <span class="dash-card-key">→</span>
+    <h2>Post an internship</h2>
+    <p>List a new role with the skills, CGPA and vacancies you need filled.</p>
+  </a>
+
+  <a href="{{ url_for('internships') }}" class="dash-card">
+    <span class="dash-card-key">→</span>
+    <h2>Manage postings</h2>
+    <p>Review every internship on the platform and remove your own listings.</p>
+  </a>
+</section>
+
+{% endblock %}

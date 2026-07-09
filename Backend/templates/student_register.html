@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Student registration · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="auth-wrap">
+  <form class="auth-card auth-card-wide" method="POST" enctype="multipart/form-data" novalidate>
+    <p class="eyebrow">// student portal</p>
+    <h1 class="auth-title">Create your profile</h1>
+    <p class="auth-sub">This is what the engine scores internships against, so keep it accurate.</p>
+
+    <div class="field-grid">
+      <div class="field-group">
+        <label class="field-label" for="name">Full name</label>
+        <input class="field-input" type="text" id="name" name="name" required autofocus>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="email">Email</label>
+        <input class="field-input" type="email" id="email" name="email" required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="password">Password</label>
+        <input class="field-input" type="password" id="password" name="password" required minlength="6">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="department">Department</label>
+        <input class="field-input" type="text" id="department" name="department" placeholder="e.g. Computer Science" required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="cgpa">CGPA</label>
+        <input class="field-input" type="number" step="0.01" min="0" max="10" id="cgpa" name="cgpa" required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="preferred_location">Preferred location</label>
+        <input class="field-input" type="text" id="preferred_location" name="preferred_location" required>
+      </div>
+
+      <div class="field-group field-group-full">
+        <label class="field-label" for="skills">Skills</label>
+        <input class="field-input" type="text" id="skills" name="skills" placeholder="Comma-separated, e.g. Python, SQL, React" required>
+      </div>
+
+      <div class="field-group field-group-full">
+        <label class="field-label" for="resume">Resume <span class="field-optional">(PDF or Word, optional)</span></label>
+        <input class="field-input field-file" type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Create account</button>
+
+    <p class="auth-footnote">
+      Already registered? <a href="{{ url_for('student_login') }}">Log in</a>
+    </p>
+  </form>
+</section>
+
+{% endblock %}

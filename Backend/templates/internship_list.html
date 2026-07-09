@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Internships · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="list-header">
+  <div>
+    <p class="eyebrow">// open roles</p>
+    <h1 class="dash-title">Internships</h1>
+  </div>
+  <form class="search-form" method="GET">
+    <input class="field-input" type="search" name="search" placeholder="Search by company, title or role" value="{{ search }}">
+    <button type="submit" class="btn btn-outline">Search</button>
+  </form>
+</section>
+
+{% if internships %}
+<div class="card-list">
+  {% for item in internships %}
+  <article class="internship-card">
+    {% if scores_by_id and item.id in scores_by_id %}
+      {% set score = scores_by_id[item.id] %}
+      <div class="match-ring {{ 'ring-high' if score >= 70 else ('ring-mid' if score >= 40 else 'ring-low') }}" style="--score: {{ score }}">
+        <span class="match-ring-value">{{ score }}%</span>
+      </div>
+    {% endif %}
+
+    <div class="internship-body">
+      <p class="internship-company">{{ item.company_name }}</p>
+      <h2 class="internship-title">{{ item.internship_title }}</h2>
+      <p class="internship-meta">{{ item.role }} &middot; {{ item.location }}</p>
+
+      <div class="tag-row">
+        {% for skill in item.required_skills.split(',') %}
+          <span class="tag">{{ skill.strip() }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="internship-stats">
+        <span>Min CGPA <strong>{{ item.minimum_cgpa }}</strong></span>
+        <span>Vacancies <strong>{{ item.vacancies }}</strong></span>
+      </div>
+    </div>
+
+    {% if current_company_id == item.company_id or session.get('is_admin') %}
+      <form method="POST" action="{{ url_for('delete_internship', internship_id=item.id) }}"
+            onsubmit="return confirm('Delete this internship posting?');" class="internship-delete">
+        <button type="submit" class="btn btn-danger-ghost btn-sm">Delete</button>
+      </form>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+  <p>No internships match that search yet.</p>
+</div>
+{% endif %}
+
+{% endblock %}

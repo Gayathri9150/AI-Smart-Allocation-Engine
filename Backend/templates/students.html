@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Students · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="list-header">
+  <div>
+    <p class="eyebrow">// admin</p>
+    <h1 class="dash-title">Students</h1>
+  </div>
+  <form class="search-form" method="GET">
+    <input class="field-input" type="search" name="search" placeholder="Search by name or department" value="{{ search }}">
+    <button type="submit" class="btn btn-outline">Search</button>
+  </form>
+</section>
+
+{% if students %}
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>CGPA</th>
+        <th>Skills</th>
+        <th>Preferred location</th>
+        <th>Resume</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.department }}</td>
+        <td class="mono-cell">{{ s.cgpa }}</td>
+        <td>
+          <div class="tag-row">
+            {% for skill in s.skills.split(',') %}
+              <span class="tag">{{ skill.strip() }}</span>
+            {% endfor %}
+          </div>
+        </td>
+        <td>{{ s.preferred_location }}</td>
+        <td>
+          {% if s.resume_filename %}
+            <a href="{{ url_for('static', filename='resumes/' ~ s.resume_filename) }}" target="_blank" rel="noopener">View</a>
+          {% else %}
+            <span class="muted">—</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="empty-state">
+  <p>No students match that search.</p>
+</div>
+{% endif %}
+
+{% endblock %}

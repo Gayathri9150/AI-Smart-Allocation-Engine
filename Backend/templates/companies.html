@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Companies · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="list-header">
+  <div>
+    <p class="eyebrow">// admin</p>
+    <h1 class="dash-title">Companies</h1>
+  </div>
+  <form class="search-form" method="GET">
+    <input class="field-input" type="search" name="search" placeholder="Search by name or industry" value="{{ search }}">
+    <button type="submit" class="btn btn-outline">Search</button>
+  </form>
+</section>
+
+{% if companies %}
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Email</th>
+        <th>Industry</th>
+        <th>Location</th>
+        <th>Typical role</th>
+        <th>Min CGPA</th>
+        <th>Vacancies</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in companies %}
+      <tr>
+        <td>{{ c.company_name }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.industry }}</td>
+        <td>{{ c.location }}</td>
+        <td>{{ c.internship_role }}</td>
+        <td class="mono-cell">{{ c.minimum_cgpa }}</td>
+        <td class="mono-cell">{{ c.vacancies }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="empty-state">
+  <p>No companies match that search.</p>
+</div>
+{% endif %}
+
+{% endblock %}

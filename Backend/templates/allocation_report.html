@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Allocation report · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="list-header">
+  <div>
+    <p class="eyebrow">// admin</p>
+    <h1 class="dash-title">Allocation report</h1>
+  </div>
+</section>
+
+{% if results %}
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Best-matching company</th>
+        <th>Role</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in results %}
+      <tr>
+        <td>{{ r.student }}</td>
+        <td>{{ r.company }}</td>
+        <td>{{ r.role }}</td>
+        <td>
+          <span class="score-pill {{ 'ring-high' if r.score >= 70 else ('ring-mid' if r.score >= 40 else 'ring-low') }}">
+            {{ r.score }}%
+          </span>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="empty-state">
+  <p>Nothing to report until students and internships exist.</p>
+</div>
+{% endif %}
+
+{% endblock %}

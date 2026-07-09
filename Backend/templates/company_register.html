@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Company registration · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="auth-wrap">
+  <form class="auth-card auth-card-wide" method="POST" novalidate>
+    <p class="eyebrow">// company portal</p>
+    <h1 class="auth-title">Register your company</h1>
+    <p class="auth-sub">These defaults pre-fill every internship you post — you can adjust them per posting later.</p>
+
+    <div class="field-grid">
+      <div class="field-group">
+        <label class="field-label" for="company_name">Company name</label>
+        <input class="field-input" type="text" id="company_name" name="company_name" required autofocus>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="email">Email</label>
+        <input class="field-input" type="email" id="email" name="email" required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="password">Password</label>
+        <input class="field-input" type="password" id="password" name="password" required minlength="6">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="industry">Industry</label>
+        <input class="field-input" type="text" id="industry" name="industry" required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="location">Location</label>
+        <input class="field-input" type="text" id="location" name="location" required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="internship_role">Typical role</label>
+        <input class="field-input" type="text" id="internship_role" name="internship_role" placeholder="e.g. Frontend Developer Intern" required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="minimum_cgpa">Minimum CGPA</label>
+        <input class="field-input" type="number" step="0.01" min="0" max="10" id="minimum_cgpa" name="minimum_cgpa" required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="vacancies">Vacancies</label>
+        <input class="field-input" type="number" min="1" id="vacancies" name="vacancies" required>
+      </div>
+
+      <div class="field-group field-group-full">
+        <label class="field-label" for="required_skills">Required skills</label>
+        <input class="field-input" type="text" id="required_skills" name="required_skills" placeholder="Comma-separated, e.g. Python, SQL, React" required>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Create account</button>
+
+    <p class="auth-footnote">
+      Already registered? <a href="{{ url_for('company_login') }}">Log in</a>
+    </p>
+  </form>
+</section>
+
+{% endblock %}

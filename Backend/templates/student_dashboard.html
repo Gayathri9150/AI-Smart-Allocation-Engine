@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Student dashboard · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="dash-header">
+  <p class="eyebrow">// student dashboard</p>
+  <h1 class="dash-title">Welcome back, {{ student_name }}</h1>
+</section>
+
+<section class="dash-grid">
+  <a href="{{ url_for('student_matches') }}" class="dash-card">
+    <span class="dash-card-key">→</span>
+    <h2>My matches</h2>
+    <p>See every open internship ranked by your match score, with a plain-language reason for each.</p>
+  </a>
+
+  <a href="{{ url_for('internships') }}" class="dash-card">
+    <span class="dash-card-key">→</span>
+    <h2>Browse internships</h2>
+    <p>Look through the full list of postings from every company on the platform.</p>
+  </a>
+</section>
+
+{% endblock %}

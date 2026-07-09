@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}AI Smart Allocation Engine{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <p class="eyebrow">// allocation engine</p>
+  <h1 class="hero-title">Every student matched<br>to the right internship.</h1>
+  <p class="hero-sub">
+    Students list their skills and CGPA. Companies list their roles and requirements.
+    The engine scores every pair transparently, so no one wonders how the match was made.
+  </p>
+  <div class="hero-actions">
+    <a href="{{ url_for('internships') }}" class="btn btn-primary">Browse open internships</a>
+    <a href="#portals" class="btn btn-ghost">Find your portal</a>
+  </div>
+</section>
+
+<section class="portals" id="portals">
+
+  <article class="portal-card">
+    <p class="portal-key">01 · STUDENT</p>
+    <h2>Find your fit</h2>
+    <p class="portal-copy">Build a profile once, then see every internship ranked by how well it actually matches you.</p>
+    <div class="portal-actions">
+      <a href="{{ url_for('student_login') }}" class="btn btn-primary btn-block">Log in</a>
+      <a href="{{ url_for('student_register') }}" class="btn btn-outline btn-block">Register</a>
+    </div>
+  </article>
+
+  <article class="portal-card">
+    <p class="portal-key">02 · COMPANY</p>
+    <h2>Post & manage roles</h2>
+    <p class="portal-copy">List an internship with the skills and CGPA you need, then track who it's reaching.</p>
+    <div class="portal-actions">
+      <a href="{{ url_for('company_login') }}" class="btn btn-primary btn-block">Log in</a>
+      <a href="{{ url_for('company_register') }}" class="btn btn-outline btn-block">Register</a>
+    </div>
+  </article>
+
+  <article class="portal-card">
+    <p class="portal-key">03 · ADMIN</p>
+    <h2>Oversee the pipeline</h2>
+    <p class="portal-copy">See every student and company on the platform, and the full allocation report at a glance.</p>
+    <div class="portal-actions">
+      <a href="{{ url_for('admin_login') }}" class="btn btn-primary btn-block">Admin login</a>
+    </div>
+  </article>
+
+</section>
+
+<section class="how-it-works">
+  <h2 class="section-title">How a score is built</h2>
+  <div class="score-breakdown">
+    <div class="score-piece">
+      <span class="score-piece-value">40</span>
+      <span class="score-piece-label">CGPA meets minimum</span>
+    </div>
+    <div class="score-piece">
+      <span class="score-piece-value">20</span>
+      <span class="score-piece-label">per matched skill</span>
+    </div>
+    <div class="score-piece">
+      <span class="score-piece-value">20</span>
+      <span class="score-piece-label">preferred location matches</span>
+    </div>
+    <div class="score-piece">
+      <span class="score-piece-value">20</span>
+      <span class="score-piece-label">department fits the role</span>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

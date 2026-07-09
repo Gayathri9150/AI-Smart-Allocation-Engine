@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Admin overview · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="dash-header">
+  <p class="eyebrow">// admin overview</p>
+  <h1 class="dash-title">Pipeline at a glance</h1>
+</section>
+
+<section class="stat-row">
+  <div class="stat-tile">
+    <span class="stat-value">{{ total_students }}</span>
+    <span class="stat-label">Students registered</span>
+  </div>
+  <div class="stat-tile">
+    <span class="stat-value">{{ total_companies }}</span>
+    <span class="stat-label">Companies registered</span>
+  </div>
+  <div class="stat-tile">
+    <span class="stat-value">{{ total_internships }}</span>
+    <span class="stat-label">Internships posted</span>
+  </div>
+</section>
+
+<section class="dash-grid">
+  <a href="{{ url_for('students') }}" class="dash-card">
+    <span class="dash-card-key">→</span>
+    <h2>Students</h2>
+    <p>Browse every student profile and search by name or department.</p>
+  </a>
+
+  <a href="{{ url_for('companies') }}" class="dash-card">
+    <span class="dash-card-key">→</span>
+    <h2>Companies</h2>
+    <p>Browse every registered company and search by name or industry.</p>
+  </a>
+
+  <a href="{{ url_for('allocation_report') }}" class="dash-card">
+    <span class="dash-card-key">→</span>
+    <h2>Allocation report</h2>
+    <p>See each student's single best-matching internship, ranked by score.</p>
+  </a>
+</section>
+
+{% endblock %}

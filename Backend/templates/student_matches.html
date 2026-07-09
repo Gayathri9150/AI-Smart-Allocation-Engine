@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}My matches · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="list-header">
+  <div>
+    <p class="eyebrow">// ranked for you</p>
+    <h1 class="dash-title">My matches</h1>
+  </div>
+</section>
+
+{% if matches %}
+<div class="card-list">
+  {% for m in matches %}
+  <article class="internship-card">
+    <div class="match-ring {{ 'ring-high' if m.score >= 70 else ('ring-mid' if m.score >= 40 else 'ring-low') }}" style="--score: {{ m.score }}">
+      <span class="match-ring-value">{{ m.score }}%</span>
+    </div>
+
+    <div class="internship-body">
+      <p class="internship-company">{{ m.company }}</p>
+      <h2 class="internship-title">{{ m.title }}</h2>
+      <p class="internship-meta">{{ m.role }} &middot; {{ m.location }}</p>
+
+      <ul class="reason-list">
+        {% for reason in m.reasons %}
+          <li>{{ reason }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+  <p>No internships have been posted yet — check back soon.</p>
+</div>
+{% endif %}
+
+{% endblock %}

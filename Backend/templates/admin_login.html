@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Admin log in · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="auth-wrap">
+  <form class="auth-card" method="POST" novalidate>
+    <p class="eyebrow">// admin portal</p>
+    <h1 class="auth-title">Admin log in</h1>
+
+    <label class="field-label" for="username">Username</label>
+    <input class="field-input" type="text" id="username" name="username" required autofocus>
+
+    <label class="field-label" for="password">Password</label>
+    <input class="field-input" type="password" id="password" name="password" required>
+
+    <button type="submit" class="btn btn-primary btn-block">Log in</button>
+  </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Page not found · AI Smart Allocation{% endblock %}
+{% block content %}
+
+<section class="auth-wrap">
+  <div class="auth-card" style="text-align:center;">
+    <p class="eyebrow">// 404</p>
+    <h1 class="auth-title">This page doesn't exist</h1>
+    <p class="auth-sub">Check the link, or head back to somewhere that does.</p>
+    <a href="{{ url_for('home') }}" class="btn btn-primary btn-block">Back to home</a>
+  </div>
+</section>
+
+{% endblock %}
