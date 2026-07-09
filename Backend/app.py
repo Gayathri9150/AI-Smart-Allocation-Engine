@@ -4,10 +4,10 @@ import uuid
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from werkzeug.utils import secure_filename
 
-from Backend.ai_engine import
-calculate_match
-from auth import hash_password, login_required, verify_password
-from db import get_db, init_db
+from Backend.ai_engine import calculate_match
+from Backend.auth import hash_password, login_required, verify_password
+from Backend.db import get_db, init_db
+
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev-only-secret-change-me")
